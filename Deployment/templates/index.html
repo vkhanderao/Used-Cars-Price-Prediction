@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Used Car Price Prediction</title>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style6.css') }}">
+    </head>
+
+    <body>
+        <div class="main">
+            <div class="container">
+                <h1>Used Car Price Prediction</h1>
+                <form action="{{url_for('predict')}}" method="POST">
+                    {% if run %}
+                        Year:<br><input name="year" type="text" placeholder={{submitted_values["year"]}}><br>
+                    {% else %}
+                        Year:<br><input name="year" type="text" placeholder="YYYY"><br>
+                    {% endif %}
+
+                    {% if run %}
+                        Odometer:<br><input name="odometer" type="text" placeholder={{submitted_values["odometer"]}}><br>
+                    {% else %}
+                        Odometer:<br><input name="odometer" type="text" placeholder="Odometer Value"><br>
+                    {% endif %}
+
+                    Manufacturer:<br>
+                    <select name="manufacturer">
+                        {% for val in values["manufacturer"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["manufacturer"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Condition:<br>
+                    <select name="condition">
+                        {% for val in values["condition"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["condition"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Cylinders:<br>
+                    <select name="cylinders">
+                        {% for val in values["cylinders"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["cylinders"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Fuel:<br>
+                    <select name="fuel">
+                        {% for val in values["fuel"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["fuel"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Title Status:<br>
+                    <select name="title_status">
+                        {% for val in values["title_status"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["title_status"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Transmission:<br>
+                    <select name="transmission">
+                        {% for val in values["transmission"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["transmission"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Type:<br>
+                    <select name="type">
+                        {% for val in values["type"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["type"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    State:<br>
+                    <select name="state">
+                        {% for val in values["state"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["state"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    Drive:<br>
+                    <select name="drive">
+                        {% for val in values["drive"] %}
+                            <option value={{val}}>{{val}}</option>
+                        {% endfor %}
+                        {% if run %}
+                        <option selected="selected">{{submitted_values["drive"]}}</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                <button type="submit" class="submitBtn">PREDICT</button>
+                </form>
+                <h2>{{ prediction_text }}</h2>
+            </div>
+        </div>
+
+    </body>
+</html>
+
